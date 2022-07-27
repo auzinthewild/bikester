@@ -11,7 +11,7 @@ import { ShoppingCart } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import logo from "../../assets/logo.webp";
 
-const Navbar = () => {
+const Navbar = ({ totalItems }) => {
   const theme = useTheme();
   const drawerWidth = 0;
 
@@ -56,7 +56,7 @@ const Navbar = () => {
             }}
           >
             <IconButton aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
