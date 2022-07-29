@@ -10,10 +10,12 @@ import {
 import { ShoppingCart } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import logo from "../../assets/logo.webp";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ totalItems }) => {
   const theme = useTheme();
   const drawerWidth = 0;
+  const location = useLocation();
 
   return (
     <>
@@ -31,6 +33,8 @@ const Navbar = ({ totalItems }) => {
       >
         <Toolbar>
           <Typography
+            component={Link}
+            to="/"
             variant="h6"
             sx={{
               flexGrow: 1,
@@ -50,17 +54,24 @@ const Navbar = ({ totalItems }) => {
           </Typography>
           <div></div>
           <div style={{ flexGrow: 1 }} />
-          <div
-            style={{
-              marginRight: theme.spacing(2),
-            }}
-          >
-            <IconButton aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={totalItems} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </div>
+          {location.pathname === "/" && (
+            <div
+              style={{
+                marginRight: theme.spacing(2),
+              }}
+            >
+              <IconButton
+                component={Link}
+                to="/cart"
+                aria-label="Show cart items"
+                color="inherit"
+              >
+                <Badge badgeContent={totalItems} color="secondary">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </>
