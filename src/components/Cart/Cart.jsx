@@ -1,25 +1,33 @@
 import React from "react";
 import { Container, Typography, Button, Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import CartItem from "./CartItem/CartItem";
+import { Link } from "react-router-dom";
 
-function Cart({ cart }) {
+function Cart({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) {
   const theme = useTheme();
-  console.log(cart);
-
-  const EmptyCart = () => (
-    <Typography variant="subtitle1">Your shopping cart is empty.</Typography>
-  );
 
   if (!cart.line_items) return "Loading";
 
-  const isEmpty = !cart.line_items.length;
+  const EmptyCart = () => (
+    <Typography variant="subtitle1">
+      Your shopping cart is empty.&nbsp;
+      <Link styke={{ textDecoration: "none" }} to="/">
+        Add some items!
+      </Link>
+    </Typography>
+  );
 
   const FilledCart = () => (
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
           <Grid item xs={12} sm={4} key={item.id}>
-            <div>{item.name}</div>
+            <CartItem
+              item={item}
+              onUpdateCartQty={onUpdateCartQty}
+              onRemoveFromCart={onRemoveFromCart}
+            />
           </Grid>
         ))}
       </Grid>
@@ -49,6 +57,7 @@ function Cart({ cart }) {
             type="button"
             variant="contained"
             color="secondary"
+            onClick={onEmptyCart}
           >
             Empty Cart
           </Button>
@@ -60,6 +69,8 @@ function Cart({ cart }) {
             sx={{
               minWidth: "150px",
             }}
+            component={Link}
+            to="/checkout"
           >
             Checkout
           </Button>
@@ -71,8 +82,16 @@ function Cart({ cart }) {
   return (
     <Container>
       <div style={{ minHeight: "64px" }} />
-      <Typography variant="h5">Your Shopping Cart</Typography>
-      {isEmpty ? <EmptyCart /> : <FilledCart />}
+      <Typography
+        sx={{
+          marginTop: 1,
+        }}
+        variant="h4"
+        gutterBottom
+      >
+        Your Shopping Cart
+      </Typography>
+      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   );
 }
