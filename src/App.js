@@ -64,7 +64,7 @@ const App = () => {
 
   return (
     <Router>
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Navbar totalItems={cart.total_items} />
         <Routes>
           <Route

@@ -6,6 +6,7 @@ import {
   CardActions,
   Typography,
   IconButton,
+  Box,
 } from "@mui/material";
 import { AddShoppingCart } from "@mui/icons-material";
 
@@ -31,21 +32,24 @@ const Product = ({ product, onAddToCart }) => {
           <Typography variant="h6" gutterBottom>
             {product.name}
           </Typography>
-          <Typography variant="h6">
-            {product.price.formatted_with_symbol}
-          </Typography>
         </div>
-        <Typography variant="body2" color="textSecondary">
-          {strippedDesc}
-        </Typography>
+        <Box minHeight={"55px"}>
+          <Typography variant="caption text" color="textSecondary">
+            {strippedDesc}
+          </Typography>
+        </Box>
       </CardContent>
       <CardActions
         disableSpacing
         sx={{
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
+          marginLeft: "8px",
         }}
       >
+        <Typography variant="h6">
+          {product.price.formatted_with_symbol}
+        </Typography>
         <IconButton
           aria-label="Add to Cart"
           onClick={() => onAddToCart(product.id, 1)}
