@@ -6,6 +6,7 @@ import {
   Button,
   Grid,
   Typography,
+  TextField,
 } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -20,7 +21,7 @@ const AddressForm = ({ checkoutToken, next }) => {
   const [shippingSubdivision, setShippingSubdivision] = useState("");
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState("");
-  const methods = useForm();
+  const { register, handleSubmit } = useForm();
 
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(
@@ -76,9 +77,9 @@ const AddressForm = ({ checkoutToken, next }) => {
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
-      <FormProvider {...methods}>
+      <FormProvider>
         <form
-          onSubmit={methods.handleSubmit((data) =>
+          onSubmit={handleSubmit((data) =>
             next({
               ...data,
               shippingCountry,
@@ -88,12 +89,67 @@ const AddressForm = ({ checkoutToken, next }) => {
           )}
         >
           <Grid container spacing={3}>
-            <CustomTextField required name="firstName" label="First name" />
-            <CustomTextField required name="lastName" label="Last name" />
+            <Grid item xs={12} sm={6}>
+              <TextField
+                {...register("firstName")}
+                fullWidth
+                required
+                name="firstName"
+                label="First name"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                {...register("lastName")}
+                fullWidth
+                required
+                name="lastName"
+                label="Last name"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                {...register("address1")}
+                fullWidth
+                required
+                name="address1"
+                label="Address Line 1"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                {...register("email")}
+                fullWidth
+                required
+                name="email"
+                label="Email"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                {...register("city")}
+                fullWidth
+                required
+                name="city"
+                label="City"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                {...register("zip")}
+                fullWidth
+                required
+                name="zip"
+                label="Zip"
+              />
+            </Grid>
+            {/* <CustomTextField required name="firstName" label="First name" /> */}
+            {/* <CustomTextField required name="lastName" label="Last name" />
             <CustomTextField required name="address1" label="Address line 1" />
             <CustomTextField required name="email" label="Email" />
             <CustomTextField required name="city" label="City" />
-            <CustomTextField required name="zip" label="Zip / Postal code" />
+            <CustomTextField required name="zip" label="Zip / Postal code" /> */}
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select

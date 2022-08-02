@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Badge,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { AppBar, Toolbar, IconButton, Badge, Typography } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import logo from "../../assets/logo.webp";
