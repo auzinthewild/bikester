@@ -8,7 +8,7 @@ function CustomTextField({ name, label, required }) {
     <Grid item xs={12} sm={6}>
       <Controller
         control={control}
-        name="CustomTextField"
+        name={name}
         render={() => (
           <TextField fullWidth name={name} label={label} required={required} />
         )}
