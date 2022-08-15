@@ -13,13 +13,13 @@ const Products = ({ products, onAddToCart }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: theme.palette.grey[200],
+        backgroundColor: "#F6F9FC",
         padding: theme.spacing(3),
       }}
     >
       <Box style={{ minHeight: "64px" }} />
       <Container></Container>
-      <Grid container justifyContent="center" spacing={4} maxWidth="lg">
+      <Grid container justifyContent="center" spacing={3} maxWidth="lg">
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
             <Product product={product} onAddToCart={onAddToCart} />

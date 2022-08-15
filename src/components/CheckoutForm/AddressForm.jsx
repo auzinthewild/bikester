@@ -24,12 +24,12 @@ const AddressForm = ({ checkoutToken, next }) => {
   const { register, handleSubmit } = useForm();
 
   const fetchShippingCountries = async (checkoutTokenId) => {
-    const { countries } = await commerce.services.localeListShippingCountries(
+    const response = await commerce.services.localeListShippingCountries(
       checkoutTokenId
     );
-
-    setShippingCountries(countries);
-    setShippingCountry(Object.keys(countries)[0]);
+    console.log(response);
+    setShippingCountries(response.countries);
+    setShippingCountry(Object.keys(response.countries)[0]);
   };
 
   const fetchSubdivisions = async (countryCode) => {
