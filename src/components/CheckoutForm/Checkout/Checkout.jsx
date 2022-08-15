@@ -36,6 +36,7 @@ function Checkout({ cart, error, order, onCaptureCheckout }) {
           const token = await commerce.checkout.generateToken(cart.id, {
             type: "cart",
           });
+          console.log("ok");
           setCheckoutToken(token);
         } catch (error) {
           history.pushState("/");

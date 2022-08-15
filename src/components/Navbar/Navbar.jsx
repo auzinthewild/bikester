@@ -43,7 +43,7 @@ const Navbar = ({ totalItems }) => {
               height="25px"
               style={{ marginRight: "10px" }}
             />
-            Shopsuey
+            Bikester
           </Typography>
           <div></div>
           <div style={{ flexGrow: 1 }} />
