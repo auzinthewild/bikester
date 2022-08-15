@@ -91,7 +91,13 @@ function Checkout({ cart, error, order, onCaptureCheckout }) {
         </Button>
       </>
     ) : (
-      <div style={{ display: 1 }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <CircularProgress />
       </div>
     );
