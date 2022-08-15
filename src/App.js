@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart, Checkout } from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -63,42 +64,45 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Navbar totalItems={cart.total_items} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Products products={products} onAddToCart={handleAddToCart} />
-            }
-          />
+    <>
+      <CssBaseline />
+      <Router>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Navbar totalItems={cart.total_items} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Products products={products} onAddToCart={handleAddToCart} />
+              }
+            />
 
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                cart={cart}
-                onUpdateCartQty={onUpdateCartQty}
-                onRemoveFromCart={onRemoveFromCart}
-                onEmptyCart={onEmptyCart}
-              ></Cart>
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-              <Checkout
-                cart={cart}
-                order={order}
-                onCaptureCheckout={handleCaptureCheckout}
-                error={errorMessage}
-              />
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  cart={cart}
+                  onUpdateCartQty={onUpdateCartQty}
+                  onRemoveFromCart={onRemoveFromCart}
+                  onEmptyCart={onEmptyCart}
+                ></Cart>
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <Checkout
+                  cart={cart}
+                  order={order}
+                  onCaptureCheckout={handleCaptureCheckout}
+                  error={errorMessage}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 };
 
