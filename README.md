@@ -1,4 +1,7 @@
 # Bikester
+
+[Live demo](https://bikester.netlify.app)
+
 Bikester is a responsive eCommerce platform with payment functionality using Commerce.js and Stripe. The site is fully testable -- you can add items to your cart and complete the checkout process with the Stripe test credit card account (detailed below). 
 
 The site was built with
